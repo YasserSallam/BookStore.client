@@ -1,0 +1,34 @@
+<a href="#" [routerLink]="['/book']" class="btn btn-success float-right">&laquo; Back </a>
+
+<form [formGroup]="bookForm" (ngSubmit)="create()">
+    <div class="form-group">
+        <label>Title</label><span class="text-danger">*</span>
+        <input type="text" class="form-control" formControlName="title" />
+    </div>
+
+    <div class="form-group">
+        <label>Author</label><span class="text-danger">*</span>
+        <input type="text" class="form-control" formControlName="authorName"/>
+    </div>
+
+    <div class="form-group">
+        <label>Published Date</label><span class="text-danger">*</span>
+        <input type="date" class="form-control" formControlName="publishedDate" />
+    
+    </div>
+    <div class="form-group">
+        <label>Number of pages</label>
+        <input type="number" class="form-control" formControlName="numberOfPages"/>
+    </div>
+
+    <div class="form-group">
+        <label>Image</label>
+        <input type="file" (change)="uploadImage($event)" #file class="form-control" 
+        accept=".jpg,.jpeg,.png"/>
+        <img [src]="selectedImageUrl" height="100px" width="100px" *ngIf="imageUploaded" />
+    </div>
+
+    <div class="form-group">
+        <input type="submit" [disabled]="!bookForm.valid" class="btn btn-primary" role="button" [value]="updatdeMode ?'Update':'Create Book'" />
+    </div>
+</form>

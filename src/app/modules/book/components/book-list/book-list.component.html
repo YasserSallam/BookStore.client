@@ -1,0 +1,22 @@
+<div class="row">
+    <a href="#" [routerLink]="['create']" class="btn btn-primary">Create Book</a>
+</div>
+<div class="row lsiting" *ngIf="books.length > 0">
+    <div class="card-deck">
+        <div class="card" *ngFor="let book of books">
+            <img class="card-img-top csutImag" [src]="getImageSrc(book.coverImageName)" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{book.title}}</h5>
+                <p class="card-text">{{book.authorName}}</p>
+                <p class="card-text"><small class="text-muted">{{book.publishedDate}}</small></p>
+                <a href="#" [routerLink]="['details',book.id]" class="btn btn-primary">View</a>
+                <a href="#" [routerLink]="['update',book.id]" class="btn btn-primary float-right">Update</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center" *ngIf="books.length == 0">
+    <p>
+        No Books found. Please click Create To create New one!
+    </p>
+</div>
