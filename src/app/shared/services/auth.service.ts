@@ -12,10 +12,10 @@ import { RegistrationResponse } from '../../modules/account/models/RegistrationR
 export class AuthService {
 accountURL:string=environment.url+'account/';
 isExternalAuth: boolean=false;
-isUserAuthenticated:EventEmitter<boolean>=new EventEmitter<boolean>()
+isUserAuthenticated:EventEmitter<RegistrationResponse>=new EventEmitter<RegistrationResponse>()
   constructor(private _http:HttpClient,  ) { }
- public AuthenticateUser(authenticate:boolean){
-   this.isUserAuthenticated.emit(authenticate)
+ public AuthenticateUser(user:RegistrationResponse){
+   this.isUserAuthenticated.emit(user)
  }
 
 

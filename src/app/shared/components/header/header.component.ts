@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { RegistrationResponse } from 'src/app/modules/account/models/RegistrationResponse';
 import { AuthService } from '../../services/auth.service';
 import { SocialService } from '../../services/social.service';
 
@@ -9,7 +10,7 @@ import { SocialService } from '../../services/social.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  isUserAuthenticated: boolean = false;
+  isUserAuthenticated: RegistrationResponse =new  RegistrationResponse() ;
 
   constructor(private _authServ: AuthService, private _router: Router, private _socialSer: SocialService) { }
 
@@ -18,13 +19,15 @@ export class HeaderComponent implements OnInit {
       this.isUserAuthenticated = res
     })
     if(localStorage.getItem('token'))
-      this.isUserAuthenticated=true
+      this.isUserAuthenticated.success=true
   }
 
   public logout = (event: any) => {
     event.preventDefault()
     localStorage.removeItem("token");
-    this._authServ.AuthenticateUser(false);
+    const res=new RegistrationResponse();
+    res.success=false
+    this._authServ.AuthenticateUser(res);
     if (this._authServ.isExternalAuth) {
       this._socialSer.signOutExternal()
     }

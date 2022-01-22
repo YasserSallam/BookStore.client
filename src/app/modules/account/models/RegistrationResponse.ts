@@ -1,5 +1,7 @@
 export class RegistrationResponse{
-    success!:boolean
+    success:boolean=false
     errors:string[]=[]
-    token: string='';
+    token!: string;
+    userName!:string
+    profilePictureURL!:string
 }

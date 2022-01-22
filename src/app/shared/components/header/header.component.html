@@ -16,7 +16,7 @@
                 <a class="nav-link" href="#" [routerLink]="['book']">Books</a>
             </li>
         </ul>
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 float-right" *ngIf='!isUserAuthenticated'>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 float-right" *ngIf='!isUserAuthenticated.success'>
             <li class="nav-item">
                 <a class="nav-link" [routerLink]="['/account/register']" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact: true}">Register</a>
@@ -26,8 +26,15 @@
                     [routerLinkActiveOptions]="{exact: true}">Sign In</a>
             </li>
         </ul>
-        <ul *ngIf="isUserAuthenticated" class="navbar-nav mr-auto mt-2 mt-lg-0 float-right">
-            <li class="nav-item">
+        <ul *ngIf="isUserAuthenticated.success" class="navbar-nav mr-auto mt-2 mt-lg-0 float-right">
+            <li class="nav-item"> 
+                 <img  [src]="isUserAuthenticated.profilePictureURL" alt="user" 
+                 class="nav-i img" *ngIf="isUserAuthenticated.profilePictureURL"/>
+            </li>
+            <li class="nav-item">    
+            <span class="nav-link">{{isUserAuthenticated.userName}}</span>
+            </li>
+            <li>
                 <a class="nav-link" href="#" (click)="logout($event)">Logout</a>
             </li>
         </ul>

@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     this._authSer.login(this.loginForm.value).subscribe(
       res => {
         localStorage.setItem("token", res.token);
-        this._authSer.AuthenticateUser(res.success)
+        this._authSer.AuthenticateUser(res)
         if(this.returnUrl != null && this.returnUrl !=''){
           debugger;
         this._router.navigate([this.returnUrl]);

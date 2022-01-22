@@ -33,7 +33,7 @@ export class ExternalLoginComponent implements OnInit {
           res => {
             localStorage.setItem("token", res.token);
             this._authSer.isExternalAuth = true;
-            this._authSer.AuthenticateUser(res.success)
+            this._authSer.AuthenticateUser(res)
             if (this.returnUrl && this.returnUrl != '') {
               this._router.navigate([this.returnUrl]);
             }
