@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg  navbar-light" style="background-color: #e3f2fd;">
+    <a class="navbar-brand" href="#" [routerLink]="['']">
+        <img src="../assets/images/icon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Luftborn
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto ">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" [routerLink]="['book']">Books</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 float-right" *ngIf='!isUserAuthenticated'>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/account/register']" routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact: true}">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/account/login']" routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact: true}">Sign In</a>
+            </li>
+        </ul>
+        <ul *ngIf="isUserAuthenticated" class="navbar-nav mr-auto mt-2 mt-lg-0 float-right">
+            <li class="nav-item">
+                <a class="nav-link" href="#" (click)="logout($event)">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
