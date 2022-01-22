@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { SocialUser } from 'angularx-social-login';
 import { SocialService } from 'src/app/shared/services/social.service';
 import { AuthService } from '../../../../shared/services/auth.service';
@@ -13,10 +13,18 @@ import { ExternalLoginDTO } from '../../models/ExternalLoginDTO';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup
+  returnUrl!: string;
+  
   constructor(private _authSer: AuthService,
-     private _fb: FormBuilder, private _router: Router) { }
+    private _fb: FormBuilder, private _router: Router, private _activatedRoute: ActivatedRoute) { }
 
-  ngOnInit(): void {
+
+    ngOnInit(): void {
+    this._activatedRoute.queryParamMap.subscribe(
+      (res: Params) => {
+        this.returnUrl = res.get('returnUrl')
+      }
+    )
     this.loginForm = this._fb.group({
       email: [],
       password: []
@@ -25,14 +33,19 @@ export class LoginComponent implements OnInit {
   login() {
     this._authSer.login(this.loginForm.value).subscribe(
       res => {
-        console.log(res)
         localStorage.setItem("token", res.token);
         this._authSer.AuthenticateUser(res.success)
+        if(this.returnUrl != null && this.returnUrl !=''){
+          debugger;
+        this._router.navigate([this.returnUrl]);
+        }
+        else{
         this._router.navigate(['']);
+        }
       },
       err => console.log(err)
     )
   }
 
-  
+
 }

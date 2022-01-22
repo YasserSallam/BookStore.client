@@ -17,6 +17,8 @@ export class HeaderComponent implements OnInit {
     this._authServ.isUserAuthenticated.subscribe(res => {
       this.isUserAuthenticated = res
     })
+    if(localStorage.getItem('token'))
+      this.isUserAuthenticated=true
   }
 
   public logout = (event: any) => {

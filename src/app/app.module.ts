@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,6 +9,7 @@ import { WelcomeComponent } from './shared/components/welcome/welcome.component'
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
 import { HeaderComponent } from './shared/components/header/header.component';
+import { AuthInterceptorService } from './shared/services/auth-interceptor.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +23,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
     SocialLoginModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
