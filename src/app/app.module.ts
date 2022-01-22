@@ -4,8 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WelcomeComponent } from './components/welcome/welcome.component';
-
+import { WelcomeComponent } from './shared/components/welcome/welcome.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +15,9 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -23,7 +23,6 @@ export class BookService {
     return this.http.post(this.bookUrl+'/createBook',book) as Observable<number>
   }
   public updateBook(book:any): Observable<number> {
-    debugger
     return this.http.post(this.bookUrl+'/UpdateBook',book) as Observable<number>
   }
 

@@ -14,7 +14,6 @@ export class BookListComponent implements OnInit {
   constructor(private _bookSer:BookService) { }
 books:BookListingDTO[]=[]
   ngOnInit(): void {
-    debugger;
     this._bookSer.getBooks().subscribe(
       res=>this.books=res,
       err=>console.log(err)
@@ -22,7 +21,6 @@ books:BookListingDTO[]=[]
   }
 
   getImageSrc(imageName:string):string{
-    debugger;
 let imgSrc= environment.imagesURL+imageName
 return imgSrc;  
 }
